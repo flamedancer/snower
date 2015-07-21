@@ -18,7 +18,7 @@ post 的数据格式
 request = None
 
 
-def paser_params(params_str):
+def parser_params(params_str):
     params = {}
     key_value_pairs = params_str.split('&')
     for key_value in key_value_pairs:
@@ -45,7 +45,7 @@ class HttpRequest(object):
 
         if len(path_params) == 2:
             self.path = path_params[0]
-            self.params = paser_params(path_params[1])
+            self.params = parser_params(path_params[1])
 
         if self.method == 'post' and self.request_info[-1]:
-            self.params.update(paser_params(self.request_info[-1]))
+            self.params.update(parser_params(self.request_info[-1]))
