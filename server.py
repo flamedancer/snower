@@ -50,6 +50,7 @@ while runflag:
         if e.errno == errno.EINTR:
             print 'get a except EINTR'
         else:
+            print 'get a error', e.errno
             raise
         continue
     if runflag == False:
@@ -59,9 +60,9 @@ while runflag:
     data = confd.recv(1024)
     if not data:
         break
-    print "receve", data
+    print "receve >>>>", data,  "<<<<<"
     http_request.request = HttpRequest(data)
-    print http_request.request.method, http_request.request.path
+    print http_request.request.method, http_request.request.path, http_request.request.params
     
     confd.send(response.get_response())
     #confd.send(HttpResponse(httpheader,'index.html'))
